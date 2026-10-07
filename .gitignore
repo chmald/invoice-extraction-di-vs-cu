@@ -1,0 +1,48 @@
+# Local deployment state and per-tenant identifiers - never commit
+.azure/
+demo-ids.local.json
+demo-ids.json
+*.local.*
+.env
+.env.*
+*.env
+!.env.example
+*.pem
+*.key
+*.pfx
+*.sp-secret.json
+secrets.json
+
+# Generated comparison output (reports contain extracted document content)
+out/
+analyzers/migrated-from-di.json
+
+# Customer documents - never commit real customer data
+samples/**/*.pdf
+samples/**/*.png
+samples/**/*.jpg
+samples/**/*.jpeg
+samples/**/*.tiff
+samples/**/*.tif
+samples/**/*.bmp
+samples/**/*.heif
+samples/**/*.docx
+samples/**/*.xlsx
+samples/**/*.pptx
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Bicep build output
+infra/*.json
+!infra/azd.parameters.json
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

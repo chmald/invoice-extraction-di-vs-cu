@@ -1,0 +1,144 @@
+{
+  "description": "Purchase order / invoice analyzer for the DI vs. CU comparison demo. Schema-driven extraction that tolerates unfamiliar vendor layouts and multiple languages. Field names intentionally mirror the Document Intelligence prebuilt-invoice canonical set so results can be compared row-for-row.",
+  "baseAnalyzerId": "prebuilt-document",
+  "models": {
+    "completion": "gpt-5.2",
+    "embedding": "text-embedding-3-large"
+  },
+  "config": {
+    "returnDetails": true,
+    "enableOcr": true,
+    "enableLayout": true,
+    "enableFormula": false,
+    "estimateFieldSourceAndConfidence": true
+  },
+  "fieldSchema": {
+    "name": "PurchaseOrderComparison",
+    "description": "Vendor-agnostic purchase order and invoice fields. Documents may arrive in any language and in layouts never seen before; infer the correct value from surrounding context and labels rather than relying on fixed positions.",
+    "fields": {
+      "VendorName": {
+        "type": "string",
+        "method": "extract",
+        "description": "Legal name of the supplier/vendor issuing this document. This is the party being PAID. Do not confuse with the buyer. May appear in a letterhead, logo caption, a 'From'/'Supplier'/'Seller' block, or in a non-English label such as 'Lieferant', 'Fournisseur', 'Proveedor', or '供应商'."
+      },
+      "VendorAddress": {
+        "type": "string",
+        "method": "extract",
+        "description": "Full postal address of the vendor/supplier, including street, city, region, postal code, and country."
+      },
+      "CustomerName": {
+        "type": "string",
+        "method": "extract",
+        "description": "Legal name of the buying entity receiving the goods or services. This is the party that PAYS. Often labeled 'Bill To', 'Sold To', 'Customer', 'Kunde', 'Client', or 'Cliente'."
+      },
+      "CustomerAddress": {
+        "type": "string",
+        "method": "extract",
+        "description": "Full postal address of the buying entity, typically under 'Ship To' or 'Deliver To'."
+      },
+      "BillingAddress": {
+        "type": "string",
+        "method": "extract",
+        "description": "Address the invoice should be billed to, if it differs from the customer address. Return null when the document shows only one address for the buyer."
+      },
+      "PurchaseOrder": {
+        "type": "string",
+        "method": "extract",
+        "description": "The purchase order number referenced by this document. Look for 'PO', 'P.O.', 'Order No', 'Bestellnummer', 'Bon de commande', or 'Orden de compra'. Return only the identifier itself, without the label."
+      },
+      "InvoiceId": {
+        "type": "string",
+        "method": "extract",
+        "description": "The unique invoice or document number assigned by the vendor. Distinct from the purchase order number."
+      },
+      "InvoiceDate": {
+        "type": "string",
+        "method": "extract",
+        "description": "Date the document was issued, normalized to ISO 8601 (YYYY-MM-DD). Interpret ambiguous numeric dates using the document's country and language: prefer DD/MM/YYYY for European documents and MM/DD/YYYY for United States documents."
+      },
+      "DueDate": {
+        "type": "string",
+        "method": "extract",
+        "description": "Date payment is due, normalized to ISO 8601 (YYYY-MM-DD). If the document states only payment terms such as 'Net 30', compute the due date from the invoice date."
+      },
+      "SubTotal": {
+        "type": "number",
+        "method": "extract",
+        "description": "Total of all line items before tax, shipping, and discounts. Return a plain number with no currency symbol or thousands separators."
+      },
+      "TotalTax": {
+        "type": "number",
+        "method": "extract",
+        "description": "Total tax amount, including VAT, GST, or sales tax. Return a plain number with no currency symbol."
+      },
+      "InvoiceTotal": {
+        "type": "number",
+        "method": "extract",
+        "description": "Final total amount payable including tax and all charges. Return a plain number with no currency symbol."
+      },
+      "CurrencyCode": {
+        "type": "string",
+        "method": "generate",
+        "description": "The ISO 4217 currency code for the amounts on this document (for example USD, EUR, GBP, JPY, CNY). Infer it from the currency symbol, the amount formatting convention, the vendor's country, or explicit text. This is a reasoned inference, not a copied span."
+      },
+      "DocumentLanguage": {
+        "type": "string",
+        "method": "generate",
+        "description": "Primary language of the document as an ISO 639-1 code (for example en, de, fr, es, ja, zh). Inferred from the document body."
+      },
+      "DocumentKind": {
+        "type": "string",
+        "method": "classify",
+        "description": "Classify what this document actually is, independent of its layout.",
+        "enum": [
+          "PurchaseOrder",
+          "Invoice",
+          "CreditMemo",
+          "Quote",
+          "PackingSlip",
+          "Statement",
+          "Other"
+        ]
+      },
+      "RiskSummary": {
+        "type": "string",
+        "method": "generate",
+        "description": "One or two sentences flagging anything an accounts-payable reviewer should check before this document is posted to the ERP: totals that do not reconcile with the line items, a missing or malformed purchase order reference, a due date earlier than the invoice date, duplicate line items, or an unusually large amount. If nothing is anomalous, return 'No anomalies detected.'"
+      },
+      "LineItems": {
+        "type": "array",
+        "method": "generate",
+        "description": "Every billed line item on the document. Include all rows even when the table spans multiple pages or uses an unfamiliar column order.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "Description": {
+              "type": "string",
+              "description": "Description of the item or service billed on this row."
+            },
+            "ProductCode": {
+              "type": "string",
+              "description": "Vendor SKU, part number, or material number for this row, if present."
+            },
+            "Quantity": {
+              "type": "number",
+              "description": "Quantity billed on this row as a plain number."
+            },
+            "Unit": {
+              "type": "string",
+              "description": "Unit of measure for this row, such as EA, PCS, KG, HR, or BOX."
+            },
+            "UnitPrice": {
+              "type": "number",
+              "description": "Price per unit for this row as a plain number, without a currency symbol."
+            },
+            "Amount": {
+              "type": "number",
+              "description": "Extended line total for this row as a plain number. If it is not printed, compute it as Quantity multiplied by UnitPrice."
+            }
+          }
+        }
+      }
+    }
+  }
+}

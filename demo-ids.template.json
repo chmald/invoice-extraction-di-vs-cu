@@ -1,0 +1,30 @@
+{
+  "_template": true,
+  "_note": "Human reference + local runs. Copy to demo-ids.local.json (gitignored) and fill in, or let `azd up` / infra/deploy.ps1 write it for you. Environment variables override every key. Never commit the populated copy; it holds service keys.",
+
+  "tenantId": "<AZURE_TENANT_ID>",
+  "subscriptionId": "<AZURE_SUBSCRIPTION_ID>",
+  "resourceGroup": "<RESOURCE_GROUP_NAME>",
+  "location": "<CONTENT_UNDERSTANDING_REGION e.g. eastus2>",
+
+  "documentIntelligenceEndpoint": "https://<your-docintel-resource>.cognitiveservices.azure.com/",
+  "documentIntelligenceKey": "<DI_KEY>",
+
+  "contentUnderstandingEndpoint": "https://<your-foundry-resource>.services.ai.azure.com/",
+  "contentUnderstandingKey": "<FOUNDRY_KEY>",
+  "contentUnderstandingApiVersion": "2025-11-01",
+  "cuCompletionModel": "gpt-5.2",
+  "cuCompletionDeployment": "gpt-5.2",
+  "cuEmbeddingModel": "text-embedding-3-large",
+  "cuEmbeddingDeployment": "text-embedding-3-large",
+
+  "confidenceThreshold": 0.6,
+
+  "workload": {
+    "_note": "The ONLY document-type-specific block. Retarget the harness by changing these values (see docs/01-architecture.md#adapting-this-pattern-to-another-document-type).",
+    "diModelId": "prebuilt-invoice",
+    "contentUnderstandingAnalyzerId": "po-analyzer",
+    "cuAnalyzerSchema": "analyzers/purchase-order-analyzer.json",
+    "criticalFields": ["VendorName", "InvoiceId", "InvoiceTotal", "PurchaseOrder", "InvoiceDate"]
+  }
+}

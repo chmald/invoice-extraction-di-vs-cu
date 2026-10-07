@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": { "value": "${AZURE_ENV_NAME}" },
+    "location": { "value": "${AZURE_LOCATION=eastus2}" },
+    "resourceGroupName": { "value": "${AZURE_RESOURCE_GROUP=}" },
+    "principalId": { "value": "${AZURE_PRINCIPAL_ID=}" },
+    "principalType": { "value": "${AZURE_PRINCIPAL_TYPE=User}" },
+    "deployDedicatedDocumentIntelligence": { "value": "${DEPLOY_DEDICATED_DOCUMENT_INTELLIGENCE=true}" },
+    "documentIntelligenceSku": { "value": "${DOCUMENT_INTELLIGENCE_SKU=S0}" },
+    "deployModels": { "value": "${DEPLOY_MODELS=true}" },
+    "completionModelName": { "value": "${CU_COMPLETION_MODEL=gpt-5.2}" },
+    "completionModelVersion": { "value": "${CU_COMPLETION_MODEL_VERSION=2025-12-11}" },
+    "completionDeploymentName": { "value": "${CU_COMPLETION_DEPLOYMENT=gpt-5.2}" },
+    "completionSku": { "value": "${CU_COMPLETION_SKU=GlobalStandard}" },
+    "completionCapacity": { "value": "${CU_COMPLETION_CAPACITY=50}" },
+    "embeddingModelName": { "value": "${CU_EMBEDDING_MODEL=text-embedding-3-large}" },
+    "embeddingModelVersion": { "value": "${CU_EMBEDDING_MODEL_VERSION=1}" },
+    "embeddingDeploymentName": { "value": "${CU_EMBEDDING_DEPLOYMENT=text-embedding-3-large}" },
+    "embeddingSku": { "value": "${CU_EMBEDDING_SKU=GlobalStandard}" },
+    "embeddingCapacity": { "value": "${CU_EMBEDDING_CAPACITY=50}" },
+    "disableLocalAuth": { "value": "${DISABLE_LOCAL_AUTH=false}" }
+  }
+}
