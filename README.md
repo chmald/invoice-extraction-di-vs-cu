@@ -1,4 +1,6 @@
-# Azure Document Intelligence vs. Content Understanding (azure-di-vs-cu)
+# Invoice extraction across changing layouts: Azure Document Intelligence vs. Content Understanding (invoice-extraction-di-vs-cu)
+
+> Formerly published as `azure-di-vs-cu`. Old links redirect automatically.
 
 <p>
 <img src="./docs/assets/icons/document-intelligence.svg" width="40" alt="Azure Document Intelligence"/>&nbsp;

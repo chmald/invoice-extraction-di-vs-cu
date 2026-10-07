@@ -3,9 +3,9 @@
 # Infra-only template: `azd up` provisions the Foundry resource (Content Understanding
 # + model deployments) and the Document Intelligence resource, then the postprovision
 # hook writes demo-ids.local.json. The harness itself runs locally (python src/run_demo.py).
-name: azure-di-vs-cu
+name: invoice-extraction-di-vs-cu
 metadata:
-  template: azure-di-vs-cu@1.1.0
+  template: invoice-extraction-di-vs-cu@1.1.0
 infra:
   provider: bicep
   path: infra

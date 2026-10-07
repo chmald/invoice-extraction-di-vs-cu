@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased (2026-10-07): repository renamed to `invoice-extraction-di-vs-cu`
+
+- GitHub repository renamed from `azure-di-vs-cu` to `invoice-extraction-di-vs-cu` to name the use case (invoice extraction across changing vendor layouts). Old links redirect automatically.
+- README title, `azure.yaml` project name/template metadata, and diagram footers updated to the new name; diagram PNGs re-exported. No code, Azure resource, or environment names changed.
+
 ## 1.1.0 (2026-10-07): validated against current Microsoft Learn, retrofitted to the demo standard, published as `azure-di-vs-cu`
 
 ### Corrected (verified against Microsoft Learn on 2026-10-07)
