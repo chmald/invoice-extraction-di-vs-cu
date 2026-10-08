@@ -42,7 +42,7 @@ Everything that must be true before the first **live** run: the subscription and
 | <img src="./assets/icons/keys.svg" width="20" alt=""/> `listKeys` | Included in Contributor | The postprovision hook reads keys into the gitignored `demo-ids.local.json` |
 
 > [!NOTE]
-> Content Understanding lives on a **Microsoft Foundry resource** (ARM kind `AIServices`). A standalone Document Intelligence (`FormRecognizer`) resource does **not** expose Content Understanding, so existing DI customers do not automatically have CU. Document Intelligence, however, also runs on the Foundry resource, which is why the dedicated DI resource is optional (`DEPLOY_DEDICATED_DOCUMENT_INTELLIGENCE=false`).
+> Content Understanding lives on a **Microsoft Foundry resource** (ARM kind `AIServices`). A standalone Document Intelligence (`FormRecognizer`) resource does **not** expose Content Understanding, so existing DI users do not automatically have CU. Document Intelligence, however, also runs on the Foundry resource, which is why the dedicated DI resource is optional (`DEPLOY_DEDICATED_DOCUMENT_INTELLIGENCE=false`).
 
 ## Region alignment
 
@@ -83,7 +83,7 @@ Sources: [CU region support](https://learn.microsoft.com/azure/ai-services/conte
 </details>
 
 > [!WARNING]
-> Content Understanding's analyze operations accept a `processingLocation` parameter that **defaults to global**, and GlobalStandard model deployments can process data in any Azure geography. If the customer has data-residency requirements, review both before running real documents.
+> Content Understanding's analyze operations accept a `processingLocation` parameter that **defaults to global**, and GlobalStandard model deployments can process data in any Azure geography. If your organization has data-residency requirements, review both before running real documents.
 
 ## Model quota and currency
 
@@ -135,7 +135,7 @@ pip install -r requirements-dev.txt   # runtime deps + pytest
 |---|---|---|
 | <img src="./assets/icons/file.svg" width="20" alt=""/> Synthetic invoices you author (Word / Excel → PDF) | ✅ | Reproduce the *structural* challenges: revised template, unfamiliar structure, multi-page tables |
 | <img src="./assets/icons/media-file.svg" width="20" alt=""/> `simulate` fixtures | ✅ | Fictitious vendors (Contoso, Northwind, Fabrikam) |
-| <img src="./assets/icons/users.svg" width="20" alt=""/> Real customer invoices | ❌ in this repo | Only in the customer's own tenant, never committed or recorded |
+| <img src="./assets/icons/users.svg" width="20" alt=""/> Real invoices | ❌ in this repo | Only in your own tenant, never committed or recorded |
 
 > [!CAUTION]
 > Every document extension under `samples/` and the whole `out/` folder are gitignored because reports contain extracted content. Do not override that with `git add -f`.

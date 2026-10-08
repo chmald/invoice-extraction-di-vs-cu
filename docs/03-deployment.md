@@ -148,7 +148,7 @@ az cognitiveservices account purge --name <ACCOUNT> --resource-group <RESOURCE_G
 ```
 
 > [!TIP]
-> Both services bill per transaction and GlobalStandard deployments have no idle charge, so a parked deployment costs close to nothing. Purge anyway when the engagement ends: soft-deleted accounts hold their custom subdomain for 48 hours.
+> Both services bill per transaction and GlobalStandard deployments have no idle charge, so a parked deployment costs close to nothing. Purge anyway when you're done with the demo: soft-deleted accounts hold their custom subdomain for 48 hours.
 
 ---
 

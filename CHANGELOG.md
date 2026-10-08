@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased (2026-10-08): docs rewritten for external audiences
+
+- Docs: rewrote for external audiences; removed internal terminology. README, docs, code comments, test docstrings, `scripts/lint_doc_visuals.py` and three diagram labels no longer reference private authoring tooling or numbered internal rules, and no longer use sales-role or consulting framing (the decision guide, report and walkthrough now address you, your team and your stakeholders).
+- Diagrams `demo-walkthrough-story`, `di-vs-cu-architecture` and `prerequisites-map` re-exported.
+- `tests/test_reusability_guards.py` gains `test_no_internal_terminology`; `test_no_engagement_specific_words` is renamed `test_no_scenario_specific_words` (same hashed word list).
+
 ## Unreleased (2026-10-07): repository renamed to `invoice-extraction-di-vs-cu`
 
 - GitHub repository renamed from `azure-di-vs-cu` to `invoice-extraction-di-vs-cu` to name the use case (invoice extraction across changing vendor layouts). Old links redirect automatically.
@@ -33,7 +39,7 @@ Still valid: DI v4.0 `2024-11-30` GA and the `azure-ai-documentintelligence` 1.0
 
 ### Removed
 
-- Engagement-specific names, internal-only sourcing notes and real-looking addresses from code, fixtures and docs; generic Contoso / Northwind / Fabrikam fixtures instead.
+- Scenario-specific names, private sourcing notes and real-looking addresses from code, fixtures and docs; generic Contoso / Northwind / Fabrikam fixtures instead.
 
 ## 1.0.0 (2026-08-18)
 

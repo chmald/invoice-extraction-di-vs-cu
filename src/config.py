@@ -34,8 +34,8 @@ DEFAULT_CONFIDENCE_THRESHOLD = 0.60
 # Read/Layout operations, signature detection, document metadata, and
 # classification enhancements. Preview APIs carry no SLA.
 #
-# Verify the current version against the CU "What's new" page before quoting a
-# customer: https://learn.microsoft.com/azure/ai-services/content-understanding/whats-new
+# Verify the current version against the CU "What's new" page before relying on
+# it: https://learn.microsoft.com/azure/ai-services/content-understanding/whats-new
 DEFAULT_CU_API_VERSION = "2025-11-01"
 
 # Generative models a GA custom analyzer uses. The analyzer references model

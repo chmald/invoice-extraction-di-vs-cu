@@ -1,6 +1,6 @@
 """Side-by-side comparison and scorecard rendering.
 
-Produces the artifact you actually show the customer: a per-field table of what
+Produces the artifact you actually share with stakeholders: a per-field table of what
 DI returned vs. what CU returned, with confidence, plus a rollup scorecard.
 """
 

@@ -18,7 +18,7 @@ The "which service for which job" charts, built to be lifted onto slides: use ca
 
 | | Chart | Use it for |
 |---|---|---|
-| <img src="./assets/icons/toolbox.svg" width="24" alt=""/> | 1 · Use case → service | The opening slide: map the customer's jobs |
+| <img src="./assets/icons/toolbox.svg" width="24" alt=""/> | 1 · Use case → service | The opening slide: map the audience's document jobs |
 | <img src="./assets/icons/gear.svg" width="24" alt=""/> | 2 · Capability matrix | The technical audience |
 | <img src="./assets/icons/media-file.svg" width="24" alt=""/> | 3 · Template drift | The "why" behind the difference |
 | <img src="./assets/icons/users.svg" width="24" alt=""/> | 4 · Industry patterns | "Where else does this apply?" |
@@ -93,7 +93,7 @@ The "which service for which job" charts, built to be lifted onto slides: use ca
 | <img src="./assets/icons/toolbox.svg" width="20" alt=""/> Agents and knowledge apps | Grounded understanding before an agent reasons or acts | CU (`prebuilt-documentSearch`, custom analyzers) | Structured, chunked output ready for retrieval |
 
 > [!NOTE]
-> For named references, use Microsoft's public customer stories (customers.microsoft.com) for the specific industry. Do not lift internal enablement material into customer-facing decks.
+> For named references, use Microsoft's public customer stories (customers.microsoft.com) for the specific industry, and cite only public sources in any deck you share.
 
 ## Chart 5: Decision flow
 

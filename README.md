@@ -142,7 +142,7 @@ From `simulate`, **layout-drift** scenario: the *same vendor* relabeled a header
 | [03b - Manual deployment](./docs/03b-manual-deployment.md) | Portal-only path producing the same resources |
 | [04 - Testing](./docs/04-testing.md) | Offline tests, live validation, the 20-minute demo script |
 | [05 - Troubleshooting](./docs/05-troubleshooting.md) | Quick triage + per-service diagnosis |
-| [06 - Decision guide](./docs/06-di-vs-cu-decision-guide.md) | **The customer-facing artifact** |
+| [06 - Decision guide](./docs/06-di-vs-cu-decision-guide.md) | **The decision guide to share with stakeholders** |
 | [07 - Use-case chart](./docs/07-use-case-comparison-chart.md) | Use-case matrix, template drift, decision flow, cost and effort |
 | [08 - Configuration reference](./docs/08-configuration-reference.md) | Every variable, output, key and recipe |
 

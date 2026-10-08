@@ -7,12 +7,12 @@
 <img src="./assets/icons/document-intelligence.svg" width="40" alt="Document Intelligence"/>&nbsp;
 <img src="./assets/icons/foundry.svg" width="40" alt="Content Understanding"/>&nbsp;
 <img src="./assets/icons/toolbox.svg" width="40" alt="Router and scorecard"/>&nbsp;
-<img src="./assets/icons/users.svg" width="40" alt="Customer walkthrough"/>
+<img src="./assets/icons/users.svg" width="40" alt="Demo walkthrough"/>
 </p>
 
 ![Static only](./assets/badges/static-only.svg) ![Simulated](./assets/badges/simulated.svg) ![v1.1.0](./assets/badges/version.svg)
 
-How to prove the harness works (offline tests, static checks, `simulate`), what to expect from a live run, and the scripted 20-minute customer walkthrough. It is for whoever rehearses or presents the demo, and for anyone changing the code. Every offline layer runs without Azure or credentials; the live layer needs the resources from [03 - Deployment](./03-deployment.md).
+How to prove the harness works (offline tests, static checks, `simulate`), what to expect from a live run, and the scripted 20-minute demo walkthrough. It is for whoever rehearses or presents the demo, and for anyone changing the code. Every offline layer runs without Azure or credentials; the live layer needs the resources from [03 - Deployment](./03-deployment.md).
 
 ## At a glance
 
@@ -39,7 +39,7 @@ python -m pytest -q
 | Test file | What it proves |
 |---|---|
 | `tests/test_harness.py` | `simulate` writes a report + sidecar with a 2/3 escalation rate; totals reconciliation flags the shifted column a row count misses; the critical-field gate (and a custom gate) escalates for the right reason; DI currency comes from `valueCurrency`; CU uses `:analyzeBinary` (`2025-11-01`), `PATCH defaults` and injects the `models` block; both analyzer schemas use the `2025-11-01` shape |
-| `tests/test_reusability_guards.py` | No engagement-specific words, private-notes or internal references, real GUIDs or key-like tokens anywhere in the tree; `.gitignore` covers secrets and outputs; a receipt workload resolves by configuration only |
+| `tests/test_reusability_guards.py` | No scenario-specific words, private-notes or local-path references, no internal jargon, real GUIDs or key-like tokens anywhere in the tree; `.gitignore` covers secrets and outputs; a receipt workload resolves by configuration only |
 | `tests/test_configuration.py` | Every azd parameter, Bicep output, hook variable and config key is documented in [08](./08-configuration-reference.md); `azd.bicep` passes every `main.bicep` parameter |
 | `tests/test_doc_visuals.py` | Docs meet the visual standard (`scripts/lint_doc_visuals.py`) |
 
@@ -88,7 +88,7 @@ Not yet executed against Azure; every row below is the **expected** result.
 
 ## The 20-minute demo script
 
-[![The 20-minute customer walkthrough](./assets/demo-walkthrough-story.png)](./assets/demo-walkthrough-story.png)
+[![The 20-minute demo walkthrough](./assets/demo-walkthrough-story.png)](./assets/demo-walkthrough-story.png)
 
 <sub>Editable source: [`assets/demo-walkthrough-story.drawio`](./assets/demo-walkthrough-story.drawio).</sub>
 
@@ -98,12 +98,12 @@ Not yet executed against Azure; every row below is the **expected** result.
 | **2 · Known template** (3 min) | <img src="./assets/icons/document-intelligence.svg" width="24" alt=""> | `simulate --scenario known-layout` | DI 92 % coverage, 0.97 mean confidence, ~2x faster; totals reconcile on both | "On this document, Document Intelligence is the right answer. Don't pay for reasoning you aren't using." |
 | **3 · Template drift** (7 min) | <img src="./assets/icons/media-file.svg" width="24" alt=""> | `simulate --scenario layout-drift` | DI 54 %: `InvoiceId` = "Document Ref." (0.34), `InvoiceTotal` = tax line (0.42); row count 3 = 3 but DI sum 0.14 = MISMATCH; CU reconciles | "A missing field fails loudly. A wrong field posts to the ERP." |
 | **4 · Different vendor** (2 min) | <img src="./assets/icons/foundry.svg" width="24" alt=""> | `simulate --scenario new-vendor-layout` | DI 23 %, `VendorName` = "ORDER CONFIRMATION"; CU finds the PO in body text and flags it | "Same data, different structure: binding by meaning holds up." |
-| **5 · Tiered router** (3 min) | <img src="./assets/icons/toolbox.svg" width="24" alt=""> | `cascade --input samples` (or the cascade section of the simulate report) | Known template stays on tier 1; drift scenarios escalate with the reason | "Your escalation rate decides the architecture, not us." |
+| **5 · Tiered router** (3 min) | <img src="./assets/icons/toolbox.svg" width="24" alt=""> | `cascade --input samples` (or the cascade section of the simulate report) | Known template stays on tier 1; drift scenarios escalate with the reason | "Your escalation rate decides the architecture, not a product preference." |
 | **6 · Migration** (2 min) | <img src="./assets/icons/code.svg" width="24" alt=""> | `migrate` | Field contract ports; client, parsing, confidence logic are real work | "Not plug-and-play. Normalize both services into one shape and the service becomes swappable." |
 | **7 · Close** (1 min) | <img src="./assets/icons/file.svg" width="24" alt=""> | — | — | "DI for the stable core, CU for the long tail, keep the normalization layer either way." |
 
 > [!CAUTION]
-> Do not show real customer invoices on a recording or a shared screen. Use synthetic samples or `simulate`, and say out loud that `simulate` numbers are illustrative.
+> Do not show real invoices on a recording or a shared screen. Use synthetic samples or `simulate`, and say out loud that `simulate` numbers are illustrative.
 
 > [!TIP]
 > Set the template-drift beat up **before** showing results: same vendor, same language, same currency, same products, just a relabeled header, totals moved to a sidebar and one extra column. Then walk the three beats: partial failure, wrong-not-missing total, row count agrees but the data is corrupt.

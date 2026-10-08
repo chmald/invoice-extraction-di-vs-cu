@@ -44,7 +44,7 @@ How the comparison harness is put together: which Azure resources it calls, how 
 | Azure | <img src="./assets/icons/document-intelligence.svg" width="20" alt=""/> Document Intelligence resource | `prebuilt-invoice`, `prebuilt-read` (optional: DI also runs on the Foundry resource) |
 | Normalization | <img src="./assets/icons/code.svg" width="20" alt=""/> `src/models.py` | `ExtractedField` / `ExtractionResult` / `CascadeResult` |
 | Outputs | <img src="./assets/icons/toolbox.svg" width="20" alt=""/> `src/cascade.py`, `src/compare.py`, `src/schema_map.py` | Router, scorecard + reconciliation, migration assessment |
-| Outputs | <img src="./assets/icons/file.svg" width="20" alt=""/> `out/comparison-*.md` + `.json` | Customer-facing report + machine-readable sidecar (gitignored) |
+| Outputs | <img src="./assets/icons/file.svg" width="20" alt=""/> `out/comparison-*.md` + `.json` | Shareable report + machine-readable sidecar (gitignored) |
 
 ### Request path
 
@@ -77,7 +77,7 @@ Both are projected into the same `ExtractionResult`. Two consequences:
 2. **The service becomes swappable.** Everything downstream (the cascade, the report, and in production your ERP feed) depends on the normalized shape, not the vendor's response schema. A future DI ↔ CU move is a contained change.
 
 > [!TIP]
-> If a customer takes exactly one pattern from this demo, it should be this anti-corruption layer, not the service choice, which will keep changing.
+> If you take exactly one pattern from this demo, it should be this anti-corruption layer, not the service choice, which will keep changing.
 
 ## The tiered router
 

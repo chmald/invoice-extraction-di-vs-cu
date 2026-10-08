@@ -195,8 +195,8 @@ def cmd_cascade(args, settings) -> int:
 def cmd_simulate(args, settings) -> int:
     """Render the full comparison from fixtures — no Azure calls, no credentials.
 
-    Use this to rehearse the demo, or to show the DI/CU difference before the
-    customer's Content Understanding access has been granted.
+    Use this to rehearse the demo, or to show the DI/CU difference before
+    Content Understanding access has been granted.
     """
     print(f"*** {fixtures.SIMULATED_BANNER} ***\n")
 

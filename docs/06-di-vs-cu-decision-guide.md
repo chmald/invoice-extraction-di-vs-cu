@@ -11,7 +11,7 @@
 
 ![GA](./assets/badges/ga.svg) ![Public preview](./assets/badges/public-preview.svg) ![CU API 2025-11-01](./assets/badges/cu-api.svg) ![DI API 2024-11-30](./assets/badges/di-api.svg)
 
-The customer-facing artifact: what is actually different between Azure Document Intelligence and Azure Content Understanding (both Foundry Tools), when to choose which, when to use both, and what a migration really costs. It is written to be forwarded on its own to architects and decision makers, and it is aligned with Microsoft Learn's [Choose the right Azure AI tool for document processing](https://learn.microsoft.com/azure/ai-services/content-understanding/choosing-right-ai-tool). Numbers quoted here come from the harness's `simulate` mode and are illustrative; run `compare` on your own documents for real ones.
+The decision guide: what is actually different between Azure Document Intelligence and Azure Content Understanding (both Foundry Tools), when to choose which, when to use both, and what a migration really costs. It is written to be forwarded on its own to architects and decision makers, and it is aligned with Microsoft Learn's [Choose the right Azure AI tool for document processing](https://learn.microsoft.com/azure/ai-services/content-understanding/choosing-right-ai-tool). Numbers quoted here come from the harness's `simulate` mode and are illustrative; run `compare` on your own documents for real ones.
 
 ## At a glance
 

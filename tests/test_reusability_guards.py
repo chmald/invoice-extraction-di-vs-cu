@@ -1,8 +1,8 @@
 """Reusability + publish-safety guards.
 
-The harness is published publicly and reused across engagements, so the shared
-baseline must stay domain-neutral and free of engagement-specific or internal
-content. Banned words are stored as truncated SHA-256 hashes so the guard itself
+The harness is published publicly and reused across scenarios, so the shared
+baseline must stay domain-neutral and free of scenario-specific or private
+content, and must not carry internal jargon an external reader can't decode. Banned words are stored as truncated SHA-256 hashes so the guard itself
 doesn't re-publish them.
 """
 from __future__ import annotations
@@ -28,6 +28,15 @@ BANNED_PATTERNS = [
     re.compile(r"[A-Za-z]:\\Users\\"),                   # local user paths
 ]
 GUID = re.compile(r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b", re.I)
+# Generic internal jargon (not secrets) that has no meaning to an external reader.
+INTERNAL_TERMS = re.compile(
+    r"demo-pattern-authoring|azure-architecture-diagrams|daily[_ ]?driver|"
+    r"\b(MCAPS|MCEM|MSX|TPID|CSAM|ATU|STU|CSU|CAIP|MACC)\b|hard[- ]rules?\s*#|authoring gates?|"
+    r"hands-on-keyboard|\bHoK\b|technical close plan|solution play|azure consumed revenue|"
+    r"tech elevate|cloud accelerate factory|microsoft\.sharepoint\.com|viva engage|"
+    r"internal-only|microsoft-internal|not for customer distribution|solution engineers?",
+    re.IGNORECASE,
+)
 # Public, well-known IDs that are allowed to appear (built-in role definitions).
 ALLOWED_GUIDS = {"a97b65f3-24c7-4388-baec-2e87135dc908"}  # Cognitive Services User
 
@@ -48,7 +57,7 @@ def _text(p: Path) -> str:
     return re.sub(r"data:image/svg\+xml,[A-Za-z0-9+/=]+", "", t)
 
 
-def test_no_engagement_specific_words():
+def test_no_scenario_specific_words():
     hits = []
     for p in _files():
         for word in set(re.findall(r"[a-z]+", _text(p).lower())):
@@ -60,6 +69,11 @@ def test_no_engagement_specific_words():
 def test_no_private_notes_or_internal_references():
     hits = [f"{p.relative_to(ROOT)}: {m.group(0)}" for p in _files() for pat in BANNED_PATTERNS
             for m in pat.finditer(_text(p))]
+    assert not hits, "\n".join(hits)
+
+
+def test_no_internal_terminology():
+    hits = [f"{p.relative_to(ROOT)}: {m.group(0)}" for p in _files() for m in INTERNAL_TERMS.finditer(_text(p))]
     assert not hits, "\n".join(hits)
 
 
