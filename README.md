@@ -13,6 +13,9 @@
 
 ![v1.1.0](./docs/assets/badges/version.svg) ![CU API 2025-11-01](./docs/assets/badges/cu-api.svg) ![DI API 2024-11-30](./docs/assets/badges/di-api.svg) ![GA](./docs/assets/badges/ga.svg) ![azd up](./docs/assets/badges/azd-up.svg) ![Static only](./docs/assets/badges/static-only.svg)
 
+> [!WARNING]
+> **For testing and demonstration purposes only.** This is a personal reference demo provided "as is" under the [MIT License](LICENSE), without warranty or support. It is not an official Microsoft product or sample, has not been through a production security review, and is not intended for production use. Review, test, and harden it before reusing any part of it, deploy only to non-production subscriptions, and never use real customer or personal data.
+
 A working comparison harness that runs the **same document** through **Azure Document Intelligence** and **Azure Content Understanding** (both Foundry Tools), normalizes the two responses into one shape, and produces a side-by-side scorecard showing exactly where the services diverge. It is built for the recurring question: *"Document Intelligence works on our standard invoice formats, but accuracy collapses when vendors send different, or slightly changed, layouts. Should we move to Content Understanding?"* It answers that with your own documents instead of a slide, and runs fully offline (`simulate`) when no Azure resources exist yet.
 
 ## What this pattern delivers
@@ -184,4 +187,14 @@ This repository is public. `.gitignore` excludes `demo-ids.local.json`, `.env*`,
 | Model retirement dates | [Model retirement schedule](https://learn.microsoft.com/azure/foundry/openai/concepts/model-retirement-schedule) |
 | Change history | [CHANGELOG.md](./CHANGELOG.md) |
 
-*Last updated: 2026-10-07*
+## Disclaimer
+
+> [!CAUTION]
+> This project is provided for testing, learning, and demonstration purposes only. It is not an official Microsoft product, sample, or service, and it is not supported under any Microsoft support program. Azure services, APIs, and pricing referenced here change over time — validate against current Microsoft Learn documentation before relying on any detail. Deploying it creates billable Azure resources; you are responsible for their cost, security, and cleanup.
+
+## License
+
+> [!NOTE]
+> Released under the [MIT License](LICENSE).
+
+*Last updated: 2026-10-08*
